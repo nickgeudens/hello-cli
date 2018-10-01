@@ -15,7 +15,7 @@
 package cmd
 
 import (
-	"fmt"
+	"errors"
 
 	"github.com/spf13/cobra"
 )
@@ -30,12 +30,8 @@ and usage of using your command. For example:
 Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
-	Run: func(cmd *cobra.Command, args []string) {
-		name, _:= cmd.Flags().GetString("name")
-		if name == "" {
-			name = "World"
-		}
-		fmt.Println("Hallo "+name)
+	RunE: func(cmd *cobra.Command, args []string) error {
+		return errors.New("Provide item to the say command")
 	},
 }
 
@@ -46,7 +42,6 @@ func init() {
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	 sayCmd.Flags().StringP("name","n", "", "Set your name")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:

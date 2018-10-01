@@ -14,7 +14,7 @@
 
 package main
 
-import "github.com/nickgeudens/hello-cobra/cmd"
+import "github.com/nickgeudens/hello-cli/cmd"
 
 func main() {
 	cmd.Execute()
