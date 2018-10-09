@@ -17,7 +17,6 @@ package cmd
 import (
 	"github.com/spf13/viper"
 	"fmt"
-	"os"
 
 	"github.com/spf13/cobra"
 )
@@ -33,9 +32,8 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		greeting := "Hello "
+		greeting := "Hello"
 		name, _ := cmd.Flags().GetString("name")
-		fmt.Println(os.Getenv("NAME"))
 		if name == "" {
 			name = "World"
 		}
@@ -51,5 +49,5 @@ to quickly create a Cobra application.`,
 
 func init() {
 	sayCmd.AddCommand(sayhelloCmd)
-	sayhelloCmd.Flags().StringP("name", "n", os.Getenv("NAME"), "Set your name")
+	sayhelloCmd.Flags().StringP("name", "n", viper.GetString("NAME") , "Set your name")
 }
